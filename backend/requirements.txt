@@ -1,15 +1,16 @@
 # Core FastAPI
 fastapi
 uvicorn[standard]
-pydantic
-pydantic[email]
-email-validator
+
+# Pydantic with email validation
+pydantic>=2.0.0
+pydantic-settings
+email-validator>=2.0.0
 
 # Supabase client
 supabase
 
 # Configurações
-pydantic-settings
 python-dotenv
 
 # Utilitários HTTP
