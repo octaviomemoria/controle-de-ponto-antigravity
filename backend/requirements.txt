@@ -1,0 +1,14 @@
+# Core FastAPI
+fastapi
+uvicorn[standard]
+
+# Supabase client
+supabase
+
+# Configurações
+pydantic-settings
+python-dotenv
+
+# Utilitários HTTP
+httpx
+python-multipart

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="description" content="Sistema de Controle de Ponto Eletrônico">
+
+    <title>Controle de Ponto Antigravity</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Icons -->
+    <link rel="icon" href="/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/ponto.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-spinner"></div>
+        <p>Carregando...</p>
+    </div>
+
+    <!-- Tela de Login -->
+    <div id="telaLogin" class="tela tela-login hidden">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo">⏰</div>
+                <h1>Controle de Ponto Antigravity</h1>
+                <p>Faça login para continuar</p>
+            </div>
+
+            <form id="formLogin" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large">Entrar</button>
+            </form>
+
+            <div id="loginErro" class="mensagem-erro hidden"></div>
+        </div>
+    </div>
+
+    <!-- Tela Principal -->
+    <div id="telaPrincipal" class="tela tela-principal hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="usuario-info">
+                    <div class="usuario-avatar">
+                        <span id="usuarioInicial">U</span>
+                    </div>
+                    <div>
+                        <h2 id="usuarioNome">Usuário</h2>
+                        <p id="usuarioEmpresa">Empresa</p>
+                    </div>
+                </div>
+                <button id="btnMenu" class="btn-icon">☰</button>
+            </div>
+        </header>
+
+        <!-- Status de Conexão -->
+        <div id="statusConexao" class="status-conexao hidden">
+            <span class="status-icone">⚠️</span>
+            <span id="statusTexto">Offline</span>
+        </div>
+
+        <!-- Card de Registro de Ponto -->
+        <section class="ponto-section">
+            <div class="ponto-card">
+                <div class="ponto-hora">
+                    <div id="horaAtual" class="hora-display">--:--:--</div>
+                    <div id="dataAtual" class="data-display">--/--/----</div>
+                </div>
+
+                <div id="ultimoRegistro" class="ultimo-registro hidden">
+                    <p class="label">Último Registro</p>
+                    <p id="ultimoRegistroTipo" class="tipo">--</p>
+                    <p id="ultimoRegistroHora" class="hora">--:--</p>
+                </div>
+
+                <div class="acoes-ponto">
+                    <button id="btnEntrada" class="btn btn-success btn-ponto" data-tipo="clock_in">
+                        <span class="btn-icone">➡️</span>
+                        <span>Marcar Entrada</span>
+                    </button>
+
+                    <button id="btnSaida" class="btn btn-danger btn-ponto" data-tipo="clock_out">
+                        <span class="btn-icone">⬅️</span>
+                        <span>Marcar Saída</span>
+                    </button>
+
+                    <button id="btnInicioIntervalo" class="btn btn-warning btn-ponto" data-tipo="break_start">
+                        <span class="btn-icone">☕</span>
+                        <span>Iniciar Intervalo</span>
+                    </button>
+
+                    <button id="btnFimIntervalo" class="btn btn-info btn-ponto" data-tipo="break_end">
+                        <span class="btn-icone">▶️</span>
+                        <span>Fim do Intervalo</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Histórico Rápido -->
+        <section class="historico-section">
+            <div class="section-header">
+                <h3>Últimos Registros</h3>
+                <button id="btnVerTodos" class="btn-link">Ver todos</button>
+            </div>
+            <div id="listaRegistros" class="lista-registros">
+                <!-- Preenchido via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Menu Lateral -->
+        <nav id="menuLateral" class="menu-lateral hidden">
+            <div class="menu-header">
+                <h3>Menu</h3>
+                <button id="btnFecharMenu" class="btn-icon">✕</button>
+            </div>
+            <ul class="menu-lista">
+                <li><a href="#" data-acao="meus-registros">📋 Meus Registros</a></li>
+                <li><a href="#" data-acao="espelho-ponto">📊 Espelho de Ponto</a></li>
+                <li id="menuAdmin" class="hidden">
+                    <a href="#" data-acao="relatorios">📈 Relatórios</a>
+                </li>
+                <li id="menuSuperAdmin" class="hidden">
+                    <a href="#" data-acao="admin">⚙️ Administração</a>
+                </li>
+                <li><a href="#" data-acao="sincronizar">🔄 Sincronizar</a></li>
+                <li><a href="#" data-acao="sair">🚪 Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Modal de Câmera e Confirmação -->
+    <div id="modalCamera" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitulo">Registrar Ponto</h3>
+                <button id="btnFecharModal" class="btn-icon">✕</button>
+            </div>
+            <div class="modal-body">
+                <video id="video" class="camera-preview" autoplay playsinline></video>
+                <canvas id="canvas" class="hidden"></canvas>
+                <img id="fotoCapturada" class="foto-preview hidden" alt="Foto capturada">
+
+                <div id="statusGeo" class="status-geo">
+                    <span class="icone">📍</span>
+                    <span id="textoGeo">Obtendo localização...</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCapturar" class="btn btn-primary">📷 Capturar Foto</button>
+                <button id="btnConfirmar" class="btn btn-success hidden">✓ Confirmar</button>
+                <button id="btnRefazer" class="btn btn-secondary hidden">↻ Refazer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay do Menu -->
+    <div id="overlay" class="overlay hidden"></div>
+
+    <!-- Toast de Notificações -->
+    <div id="toast" class="toast hidden">
+        <span id="toastMensagem"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/config.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/camera.js"></script>
+    <script src="/js/geolocation.js"></script>
+    <script src="/js/offline.js"></script>
+    <script src="/js/ponto.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/js/app.js"></script>
+
+    <!-- Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(reg => console.log('Service Worker registrado:', reg))
+                    .catch(err => console.error('Erro ao registrar Service Worker:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>

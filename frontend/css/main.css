@@ -1,0 +1,426 @@
+/*app ============================================================================
+   SISTEMA DE CONTROLE DE PONTO - ESTILOS PRINCIPAIS
+   ============================================================================ */
+
+/* ============================================================================
+   RESET E VARIÁVEIS CSS
+   ============================================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Cores Principais */
+    --cor-primaria: #6366f1;
+    --cor-primaria-escura: #4f46e5;
+    --cor-primaria-clara: #818cf8;
+
+    /* Cores de Estado */
+    --cor-sucesso: #10b981;
+    --cor-perigo: #ef4444;
+    --cor-aviso: #f59e0b;
+    --cor-info: #3b82f6;
+
+    /* Cores Neutras */
+    --cor-texto: #1f2937;
+    --cor-texto-secundario: #6b7280;
+    --cor-borda: #e5e7eb;
+    --cor-fundo: #f9fafb;
+    --cor-branco: #ffffff;
+
+    /* Sombras */
+    --sombra-pequena: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --sombra-media: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --sombra-grande: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+
+    /* Espaçamentos */
+    --espacamento-xs: 0.5rem;
+    --espacamento-sm: 0.75rem;
+    --espacamento-md: 1rem;
+    --espacamento-lg: 1.5rem;
+    --espacamento-xl: 2rem;
+
+    /* Bordas */
+    --raio-borda: 0.75rem;
+    --raio-borda-small: 0.5rem;
+
+    /* Transições */
+    --transicao-rapida: 0.15s ease;
+    --transicao-normal: 0.3s ease;
+}
+
+/* ============================================================================
+   ESTILOS BASE
+   ============================================================================ */
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* ============================================================================
+   UTILITÁRIOS
+   ============================================================================ */
+
+.hidden {
+    display: none !important;
+}
+
+.container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 var(--espacamento-md);
+}
+
+/* ============================================================================
+   LOADER
+   ============================================================================ */
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--cor-branco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loader-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--cor-borda);
+    border-top-color: var(--cor-primaria);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader p {
+    margin-top: var(--espacamento-md);
+    color: var(--cor-texto-secundario);
+}
+
+/* ============================================================================
+   TELAS
+   ============================================================================ */
+
+.tela {
+    min-height: 100vh;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================================================
+   TELA DE LOGIN
+   ============================================================================ */
+
+.tela-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--espacamento-lg);
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-primaria-escura) 100%);
+}
+
+.login-container {
+    background: var(--cor-branco);
+    border-radius: var(--raio-borda);
+    padding: var(--espacamento-xl);
+    width: 100%;
+    max-width: 400px;
+    box-shadow: var(--sombra-grande);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: var(--espacamento-xl);
+}
+
+.logo {
+    font-size: 4rem;
+    margin-bottom: var(--espacamento-sm);
+}
+
+.login-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--cor-texto);
+    margin-bottom: var(--espacamento-xs);
+}
+
+.login-header p {
+    color: var(--cor-texto-secundario);
+    font-size: 0.925rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacamento-lg);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacamento-xs);
+}
+
+.form-group label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--cor-texto);
+}
+
+.form-group input {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--cor-borda);
+    border-radius: var(--raio-borda-small);
+    font-size: 1rem;
+    transition: all var(--transicao-normal);
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* ============================================================================
+   BOTÕES
+   ============================================================================ */
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--raio-borda-small);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all var(--transicao-normal);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background: var(--cor-primaria);
+    color: var(--cor-branco);
+}
+
+.btn-primary:hover {
+    background: var(--cor-primaria-escura);
+}
+
+.btn-success {
+    background: var(--cor-sucesso);
+    color: var(--cor-branco);
+}
+
+.btn-danger {
+    background: var(--cor-perigo);
+    color: var(--cor-branco);
+}
+
+.btn-warning {
+    background: var(--cor-aviso);
+    color: var(--cor-branco);
+}
+
+.btn-info {
+    background: var(--cor-info);
+    color: var(--cor-branco);
+}
+
+.btn-secondary {
+    background: var(--cor-borda);
+    color: var(--cor-texto);
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+    color: var(--cor-texto);
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--cor-primaria);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0;
+    text-decoration: none;
+}
+
+/* ============================================================================
+   MENSAGENS
+   ============================================================================ */
+
+.mensagem-erro {
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+    padding: var(--espacamento-md);
+    border-radius: var(--raio-borda-small);
+    margin-top: var(--espacamento-md);
+    font-size: 0.9rem;
+}
+
+/* ============================================================================
+   HEADER
+   ============================================================================ */
+
+.header {
+    background: var(--cor-branco);
+    border-bottom: 1px solid var(--cor-borda);
+    padding: var(--espacamento-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.usuario-info {
+    display: flex;
+    align-items: center;
+    gap: var(--espacamento-sm);
+}
+
+.usuario-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-clara));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-branco);
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.usuario-info h2 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.usuario-info p {
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario);
+}
+
+/* ============================================================================
+   STATUS DE CONEXÃO
+   ============================================================================ */
+
+.status-conexao {
+    background: var(--cor-aviso);
+    color: var(--cor-branco);
+    padding: var(--espacamento-sm) var(--espacamento-md);
+    text-align: center;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* ============================================================================
+   TOAST
+   ============================================================================ */
+
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--cor-texto);
+    color: var(--cor-branco);
+    padding: 1rem 1.5rem;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-grande);
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+    max-width: 90%;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ============================================================================
+   RESPONSIVIDADE
+   ============================================================================ */
+
+@media (max-width: 640px) {
+    .login-container {
+        padding: var(--espacamento-lg);
+    }
+
+    .logo {
+        font-size: 3rem;
+    }
+}
