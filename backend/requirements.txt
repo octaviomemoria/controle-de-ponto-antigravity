@@ -1,6 +1,9 @@
 # Core FastAPI
 fastapi
 uvicorn[standard]
+pydantic
+pydantic[email]
+email-validator
 
 # Supabase client
 supabase
