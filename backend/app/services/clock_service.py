@@ -1,7 +1,7 @@
 from supabase import Client
 from app.models.enums import TipoPonto
 from app.models.schemas import RequisicaoPonto, RegistroPonto, PerfilUsuario
-from app.services.servico_foto import ServicoFoto
+from app.services.photo_service import ServicoFoto
 from datetime import datetime
 from typing import Optional, Dict
 import logging
