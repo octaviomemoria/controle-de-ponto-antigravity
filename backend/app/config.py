@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     debug: bool = True
     
     # CORS Configuration
-    allowed_origins: str = "http://localhost:3000,http://localhost:8080"
+    allowed_origins: str = "*"  # Allow all origins (or specify Vercel URL)
     
     # JWT Configuration
     secret_key: str = "your-secret-key-change-in-production"
