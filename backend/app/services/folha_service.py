@@ -11,7 +11,7 @@ class ServicoFolha:
     """Serviço para cálculos de folha de pagamento"""
     
     # Configurações padrão (podem vir das configurações da empresa)
-    JORNADA_DI ARIA_HORAS = 8.0
+    JORNADA_DIARIA_HORAS = 8.0
     JORNADA_SEMANAL_HORAS = 44.0
     TOLERANCIA_MINUTOS = 10
     
