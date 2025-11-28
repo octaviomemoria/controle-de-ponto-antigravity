@@ -6,7 +6,7 @@ const CONFIG = {
     // URL da API (ajustar conforme ambiente)
     API_URL: window.location.hostname === 'localhost'
         ? 'http://localhost:8000'
-        : 'https://sua-api.exemplo.com',
+        : 'https://gracious-harmony-copy-production.up.railway.app',
 
     // Chaves do LocalStorage
     STORAGE_KEYS: {
