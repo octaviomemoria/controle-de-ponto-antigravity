@@ -39,7 +39,18 @@ class Auth {
                 window.location.reload();
 
             } catch (error) {
-                erroDiv.textContent = error.message;
+                // Extrair mensagem de erro corretamente
+                let mensagemErro = 'Erro ao fazer login';
+
+                if (error.message) {
+                    mensagemErro = error.message;
+                } else if (typeof error === 'string') {
+                    mensagemErro = error;
+                } else if (error.detail) {
+                    mensagemErro = error.detail;
+                }
+
+                erroDiv.textContent = mensagemErro;
                 erroDiv.classList.remove('hidden');
 
                 btnSubmit.disabled = false;

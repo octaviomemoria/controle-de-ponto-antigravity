@@ -1,5 +1,5 @@
 /* ============================================================================
-   CONTROLE DE PONTO ANTIGRAVITY - DESIGN MODERNO E FUTURISTA
+   CONTROLE DE PONTO ANTIGRAVITY - DESIGN MODERNO E PREMIUM (LIGHT)
    ============================================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
@@ -15,46 +15,38 @@
 }
 
 :root {
-    /* Gradientes Futuristas */
+    /* Gradientes Modernos */
     --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-success: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-info: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --gradient-warning: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-    --gradient-dark: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-    --gradient-purple: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --gradient-info: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    --gradient-bg: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #fae8ff 100%);
 
-    /* Cores Neon */
-    --neon-blue: #00f2fe;
-    --neon-purple: #667eea;
-    --neon-pink: #f5576c;
-    --neon-green: #00ff88;
+    /* Cores Base Light */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #f3f4f6;
 
-    /* Cores Base Dark */
-    --bg-dark-primary: #0a0e27;
-    --bg-dark-secondary: #141b3d;
-    --bg-dark-tertiary: #1e2749;
-
-    /* Glass Effect */
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    /* Glass Effect (Light) */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(103, 126, 234, 0.2);
+    --glass-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.15);
 
     /* Cores Texto */
-    --text-primary: #ffffff;
-    --text-secondary: #b4b4c8;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
     --text-accent: #667eea;
 
-    /* Sombras Neon */
-    --shadow-neon-blue: 0 0 20px rgba(0, 242, 254, 0.5);
-    --shadow-neon-purple: 0 0 30px rgba(102, 126, 234, 0.6);
-    --shadow-neon-pink: 0 0 25px rgba(245, 87, 108, 0.5);
-
-    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    --shadow-elevated: 0 20px 60px rgba(0, 0, 0, 0.3);
+    /* Sombras */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --shadow-colored: 0 10px 40px -10px rgba(103, 126, 234, 0.4);
 
     /* Transitions */
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* ============================================================================
@@ -66,42 +58,11 @@ body {
     font-size: 16px;
     line-height: 1.6;
     color: var(--text-primary);
-    background: var(--bg-dark-primary);
+    background: var(--gradient-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    position: relative;
-}
-
-/* Animated Background */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(245, 87, 108, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(0, 242, 254, 0.1) 0%, transparent 50%);
-    animation: gradientShift 15s ease infinite;
-    pointer-events: none;
-    z-index: 0;
-}
-
-@keyframes gradientShift {
-
-    0%,
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    50% {
-        opacity: 0.8;
-        transform: scale(1.1);
-    }
+    min-height: 100vh;
 }
 
 /* ============================================================================
@@ -116,12 +77,10 @@ body::before {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 1.5rem;
-    position: relative;
-    z-index: 1;
 }
 
 /* ============================================================================
-   LOADER (Futurista)
+   LOADER (Moderno)
    ============================================================================ */
 
 .loader {
@@ -130,7 +89,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--bg-dark-primary);
+    background: var(--bg-primary);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -139,28 +98,13 @@ body::before {
 }
 
 .loader-spinner {
-    width: 80px;
-    height: 80px;
-    border: 4px solid transparent;
-    border-top-color: var(--neon-blue);
-    border-right-color: var(--neon-purple);
+    width: 70px;
+    height: 70px;
+    border: 4px solid #e5e7eb;
+    border-top-color: #667eea;
     border-radius: 50%;
-    animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-    box-shadow: var(--shadow-neon-blue);
-    position: relative;
-}
-
-.loader-spinner::before {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border: 4px solid transparent;
-    border-top-color: var(--neon-pink);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite reverse;
+    animation: spin 1s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(103, 126, 234, 0.2);
 }
 
 @keyframes spin {
@@ -170,24 +114,21 @@ body::before {
 }
 
 .loader p {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     color: var(--text-secondary);
-    font-size: 1.1rem;
-    font-weight: 300;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 /* ============================================================================
-   TELA DE LOGIN (Glassmorphism)
+   TELA DE LOGIN (Modern Premium)
    ============================================================================ */
 
 .tela {
     min-height: 100vh;
     opacity: 0;
-    animation: fadeIn 0.6s forwards;
-    position: relative;
-    z-index: 1;
+    animation: fadeIn 0.5s forwards;
 }
 
 @keyframes fadeIn {
@@ -201,7 +142,6 @@ body::before {
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    position: relative;
 }
 
 .login-container {
@@ -213,38 +153,14 @@ body::before {
     padding: 3rem;
     width: 100%;
     max-width: 480px;
-    box-shadow: var(--shadow-glass), var(--shadow-elevated);
-    position: relative;
-    overflow: hidden;
-    animation: slideUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-/* Glow Effect */
-.login-container::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg at 50% 50%,
-            rgba(102, 126, 234, 0) 0deg,
-            rgba(102, 126, 234, 0.3) 120deg,
-            rgba(102, 126, 234, 0) 240deg);
-    animation: rotate 6s linear infinite;
-    opacity: 0.5;
-}
-
-@keyframes rotate {
-    100% {
-        transform: rotate(360deg);
-    }
+    box-shadow: var(--glass-shadow), var(--shadow-xl);
+    animation: slideUp 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(40px) scale(0.9);
+        transform: translateY(30px) scale(0.95);
     }
 
     to {
@@ -256,14 +172,11 @@ body::before {
 .login-header {
     text-align: center;
     margin-bottom: 2.5rem;
-    position: relative;
-    z-index: 1;
 }
 
 .logo {
     font-size: 5rem;
     margin-bottom: 1rem;
-    filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
     animation: float 3s ease-in-out infinite;
 }
 
@@ -275,12 +188,12 @@ body::before {
     }
 
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-8px);
     }
 }
 
 .login-header h1 {
-    font-size: 2rem;
+    font-size: 1.875rem;
     font-weight: 800;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
@@ -293,55 +206,51 @@ body::before {
 .login-header p {
     color: var(--text-secondary);
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .login-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    position: relative;
-    z-index: 1;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
 }
 
 .form-group label {
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: var(--text-primary);
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     text-transform: uppercase;
-    font-size: 0.85rem;
 }
 
 .form-group input {
     padding: 1rem 1.25rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 2px solid var(--glass-border);
-    border-radius: 16px;
+    background: var(--bg-primary);
+    border: 2px solid #e5e7eb;
+    border-radius: 14px;
     font-size: 1rem;
     color: var(--text-primary);
     transition: var(--transition-smooth);
     font-family: inherit;
-    backdrop-filter: blur(10px);
 }
 
 .form-group input::placeholder {
     color: var(--text-secondary);
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .form-group input:focus {
     outline: none;
-    border-color: var(--neon-purple);
-    background: rgba(102, 126, 234, 0.05);
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), var(--shadow-neon-purple);
-    transform: translateY(-2px);
+    border-color: #667eea;
+    background: var(--bg-primary);
+    box-shadow: 0 0 0 4px rgba(103, 126, 234, 0.1), var(--shadow-md);
+    transform: translateY(-1px);
 }
 
 /* ============================================================================
@@ -351,8 +260,8 @@ body::before {
 .btn {
     padding: 1rem 2rem;
     border: none;
-    border-radius: 16px;
-    font-size: 1.05rem;
+    border-radius: 14px;
+    font-size: 1rem;
     font-weight: 700;
     font-family: inherit;
     cursor: pointer;
@@ -362,11 +271,11 @@ body::before {
     justify-content: center;
     gap: 0.75rem;
     text-decoration: none;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    font-size: 0.875rem;
     position: relative;
     overflow: hidden;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-size: 0.95rem;
 }
 
 .btn::before {
@@ -377,9 +286,9 @@ body::before {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.3);
     transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+    transition: width 0.5s, height 0.5s;
 }
 
 .btn:hover::before {
@@ -388,45 +297,47 @@ body::before {
 }
 
 .btn:active {
-    transform: scale(0.96);
+    transform: scale(0.97);
 }
 
 .btn-primary {
     background: var(--gradient-primary);
-    color: var(--text-primary);
-    box-shadow: var(--shadow-neon-purple);
+    color: white;
+    box-shadow: var(--shadow-colored);
 }
 
 .btn-primary:hover {
-    box-shadow: var(--shadow-neon-purple), 0 8px 20px rgba(102, 126, 234, 0.4);
-    transform: translateY(-3px);
+    box-shadow: var(--shadow-colored), 0 6px 16px rgba(103, 126, 234, 0.3);
+    transform: translateY(-2px);
 }
 
 .btn-success {
     background: var(--gradient-success);
-    color: var(--text-primary);
-    box-shadow: var(--shadow-neon-pink);
+    color: white;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-    color: var(--text-primary);
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
 }
 
 .btn-warning {
     background: var(--gradient-warning);
-    color: var(--text-primary);
+    color: white;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
 }
 
 .btn-info {
     background: var(--gradient-info);
-    color: var(--text-primary);
-    box-shadow: var(--shadow-neon-blue);
+    color: white;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.25);
 }
 
 .btn-large {
     padding: 1.25rem 2.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     width: 100%;
 }
 
@@ -441,16 +352,15 @@ body::before {
    ============================================================================ */
 
 .mensagem-erro {
-    background: rgba(245, 87, 108, 0.1);
-    border: 1px solid rgba(245, 87, 108, 0.3);
-    border-left: 4px solid var(--neon-pink);
-    color: #ff9999;
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+    border-left: 4px solid #ef4444;
+    color: #991b1b;
     padding: 1rem 1.25rem;
     border-radius: 12px;
-    margin-top: 1rem;
-    font-size: 0.95rem;
-    backdrop-filter: blur(10px);
-    animation: shake 0.5s;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    animation: shake 0.4s;
 }
 
 @keyframes shake {
@@ -461,16 +371,16 @@ body::before {
     }
 
     25% {
-        transform: translateX(-10px);
+        transform: translateX(-8px);
     }
 
     75% {
-        transform: translateX(10px);
+        transform: translateX(8px);
     }
 }
 
 /* ============================================================================
-   HEADER (Glassmorphism)
+   HEADER (Modern)
    ============================================================================ */
 
 .header {
@@ -482,7 +392,7 @@ body::before {
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: var(--shadow-glass);
+    box-shadow: var(--shadow-sm);
 }
 
 .header-content {
@@ -507,11 +417,11 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-primary);
+    color: white;
     font-weight: 800;
     font-size: 1.5rem;
-    box-shadow: var(--shadow-neon-purple);
-    border: 3px solid var(--glass-border);
+    box-shadow: var(--shadow-colored);
+    border: 3px solid var(--bg-primary);
 }
 
 .usuario-info h2 {
@@ -523,12 +433,12 @@ body::before {
 .usuario-info p {
     font-size: 0.9rem;
     color: var(--text-secondary);
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .btn-icon {
-    background: transparent;
-    border: 2px solid var(--glass-border);
+    background: var(--bg-primary);
+    border: 2px solid #e5e7eb;
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.75rem;
@@ -536,13 +446,12 @@ body::before {
     color: var(--text-primary);
     border-radius: 12px;
     transition: var(--transition-smooth);
-    backdrop-filter: blur(10px);
 }
 
 .btn-icon:hover {
-    background: rgba(102, 126, 234, 0.1);
-    border-color: var(--neon-purple);
-    box-shadow: var(--shadow-neon-purple);
+    background: #f3f4f6;
+    border-color: #667eea;
+    box-shadow: var(--shadow-md);
 }
 
 /* ============================================================================
@@ -551,7 +460,7 @@ body::before {
 
 .status-conexao {
     background: var(--gradient-warning);
-    color: var(--text-primary);
+    color: white;
     padding: 0.75rem 1.25rem;
     text-align: center;
     font-size: 0.9rem;
@@ -560,12 +469,12 @@ body::before {
     justify-content: center;
     gap: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 20px rgba(250, 112, 154, 0.3);
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 12px rgba(245, 158, 11, 0.25);
 }
 
 /* ============================================================================
-   TOAST (Moderno)
+   TOAST (Modern)
    ============================================================================ */
 
 .toast {
@@ -579,10 +488,10 @@ body::before {
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
     padding: 1.25rem 2rem;
-    border-radius: 16px;
-    box-shadow: var(--shadow-glass), var(--shadow-elevated);
+    border-radius: 14px;
+    box-shadow: var(--glass-shadow), var(--shadow-lg);
     z-index: 1000;
-    animation: slideUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     max-width: 90%;
     font-weight: 500;
 }
@@ -603,53 +512,12 @@ body::before {
     }
 
     .login-header h1 {
-        font-size: 1.75rem;
+        font-size: 1.675rem;
     }
 
     .usuario-avatar {
         width: 48px;
         height: 48px;
         font-size: 1.25rem;
-    }
-}
-
-/* ============================================================================
-   ANIMAÇÕES EXTRAS
-   ============================================================================ */
-
-@keyframes pulse {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.7;
-    }
-}
-
-/* Particles decoration (optional) */
-.login-container::after {
-    content: '';
-    position: absolute;
-    bottom: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: particleMove 20s linear infinite;
-    opacity: 0.3;
-    pointer-events: none;
-}
-
-@keyframes particleMove {
-    0% {
-        transform: translate(0, 0);
-    }
-
-    100% {
-        transform: translate(-50px, -50px);
     }
 }

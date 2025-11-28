@@ -1,9 +1,9 @@
 /* ============================================================================
-   ESTILOS ESPECÍFICOS PARA REGISTRO DE PONTO - FUTURISTA
+   ESTILOS ESPECÍFICOS PARA REGISTRO DE PONTO - LIGHT MODERN
    ============================================================================ */
 
 /* ============================================================================
-   CARD DE PONTO (Glassmorphism)
+   CARD DE PONTO (Modern Glass)
    ============================================================================ */
 
 .ponto-section {
@@ -17,32 +17,15 @@
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     padding: 2.5rem;
-    box-shadow: var(--shadow-glass), var(--shadow-elevated);
+    box-shadow: var(--glass-shadow), var(--shadow-lg);
     margin-bottom: 2rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.ponto-card::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: var(--gradient-purple);
-    opacity: 0.03;
-    border-radius: 24px;
-    animation: pulse 4s ease-in-out infinite;
-    z-index: -1;
 }
 
 .ponto-hora {
     text-align: center;
     margin-bottom: 2.5rem;
     padding-bottom: 2rem;
-    border-bottom: 2px solid var(--glass-border);
-    position: relative;
+    border-bottom: 2px solid #e5e7eb;
 }
 
 .hora-display {
@@ -55,15 +38,12 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
-    text-shadow: var(--shadow-neon-blue);
-    filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.3));
 }
 
 .data-display {
     font-size: 1.2rem;
     color: var(--text-secondary);
     font-weight: 400;
-    letter-spacing: 1px;
 }
 
 /* ============================================================================
@@ -73,35 +53,11 @@
 .ultimo-registro {
     text-align: center;
     padding: 1.75rem;
-    background: rgba(102, 126, 234, 0.05);
-    border: 1px solid rgba(102, 126, 234, 0.2);
+    background: rgba(103, 126, 234, 0.05);
+    border: 1px solid rgba(103, 126, 234, 0.2);
     border-radius: 20px;
     margin-bottom: 2.5rem;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
-    position: relative;
-    overflow: hidden;
-}
-
-.ultimo-registro::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.2), transparent);
-    animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-    0% {
-        left: -100%;
-    }
-
-    100% {
-        left: 100%;
-    }
+    box-shadow: 0 4px 14px rgba(103, 126, 234, 0.1);
 }
 
 .ultimo-registro .label {
@@ -109,7 +65,7 @@
     color: var(--text-secondary);
     margin-bottom: 0.5rem;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     font-weight: 700;
 }
 
@@ -118,7 +74,6 @@
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
-    letter-spacing: 0.5px;
 }
 
 .ultimo-registro .hora {
@@ -148,37 +103,24 @@
     font-size: 1.05rem;
     gap: 1rem;
     border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--glass-border);
+    border: 2px solid #e5e7eb;
+    background: var(--bg-primary);
+    transition: var(--transition-smooth);
+}
+
+.btn-ponto:not(:disabled):hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: #667eea;
 }
 
 .btn-ponto .btn-icone {
     font-size: 2.5rem;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }
 
 .btn-ponto:disabled {
-    filter: grayscale(1);
     opacity: 0.4;
-}
-
-.btn-ponto:not(:disabled)::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-primary);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.btn-ponto:not(:disabled):hover::after {
-    transform: scaleX(1);
+    filter: grayscale(0.8);
 }
 
 /* ============================================================================
@@ -203,7 +145,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    letter-spacing: -0.5px;
 }
 
 .lista-registros {
@@ -222,73 +163,50 @@
     display: flex;
     align-items: center;
     gap: 1.25rem;
-    box-shadow: var(--shadow-glass);
+    box-shadow: var(--shadow-sm);
     transition: var(--transition-smooth);
-    position: relative;
-    overflow: hidden;
-}
-
-.registro-item::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: opacity 0.3s;
 }
 
 .registro-item:hover {
-    transform: translateX(8px);
-    box-shadow: var(--shadow-glass), var(--shadow-neon-purple);
-}
-
-.registro-item:hover::before {
-    opacity: 1;
-}
-
-.registro-item:active {
-    transform: translateX(8px) scale(0.98);
+    transform: translateX(6px);
+    box-shadow: var(--shadow-md);
+    border-color: #667eea;
 }
 
 .registro-icone {
     width: 56px;
     height: 56px;
-    border-radius: 16px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.75rem;
     flex-shrink: 0;
-    position: relative;
-    border: 2px solid transparent;
-    transition: var(--transition-smooth);
+    border: 2px solid;
 }
 
 .registro-icone.entrada {
-    background: rgba(0, 255, 136, 0.1);
-    border-color: rgba(0, 255, 136, 0.3);
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #059669;
 }
 
 .registro-icone.saida {
-    background: rgba(245, 87, 108, 0.1);
-    border-color: rgba(245, 87, 108, 0.3);
-    box-shadow: 0 0 20px rgba(245, 87, 108, 0.2);
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #dc2626;
 }
 
 .registro-icone.intervalo-inicio {
-    background: rgba(250, 112, 154, 0.1);
-    border-color: rgba(250, 112, 154, 0.3);
-    box-shadow: 0 0 20px rgba(250, 112, 154, 0.2);
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #d97706;
 }
 
 .registro-icone.intervalo-fim {
-    background: rgba(0, 242, 254, 0.1);
-    border-color: rgba(0, 242, 254, 0.3);
-    box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #2563eb;
 }
 
 .registro-info {
@@ -313,17 +231,18 @@
 .registro-foto {
     width: 56px;
     height: 56px;
-    border-radius: 14px;
+    border-radius: 12px;
     object-fit: cover;
     cursor: pointer;
     flex-shrink: 0;
-    border: 2px solid var(--glass-border);
+    border: 2px solid #e5e7eb;
     transition: var(--transition-smooth);
 }
 
 .registro-foto:hover {
-    transform: scale(1.1);
-    box-shadow: var(--shadow-neon-purple);
+    transform: scale(1.08);
+    box-shadow: var(--shadow-md);
+    border-color: #667eea;
 }
 
 /* ============================================================================
@@ -340,7 +259,7 @@
     backdrop-filter: blur(30px) saturate(180%);
     -webkit-backdrop-filter: blur(30px) saturate(180%);
     border-left: 1px solid var(--glass-border);
-    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.4);
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.1);
     z-index: 200;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -352,7 +271,7 @@
 
 .menu-header {
     padding: 1.75rem;
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid #e5e7eb;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -384,12 +303,10 @@
     border-left: 4px solid transparent;
 }
 
-.menu-lista li a:hover,
-.menu-lista li a:active {
-    background: rgba(102, 126, 234, 0.1);
-    border-left-color: var(--neon-purple);
-    color: var(--neon-purple);
-    transform: translateX(8px);
+.menu-lista li a:hover {
+    background: rgba(103, 126, 234, 0.05);
+    border-left-color: #667eea;
+    color: #667eea;
 }
 
 /* ============================================================================
@@ -402,8 +319,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(10, 14, 39, 0.8);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
     z-index: 150;
     opacity: 0;
     transition: opacity 0.3s;
@@ -423,15 +340,15 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(10, 14, 39, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 300;
     padding: 1.5rem;
     opacity: 0;
-    transition: opacity 0.4s;
+    transition: opacity 0.3s;
 }
 
 .modal:not(.hidden) {
@@ -450,14 +367,14 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: var(--shadow-glass), var(--shadow-elevated);
-    animation: modalSlideUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: var(--shadow-xl);
+    animation: modalSlideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 @keyframes modalSlideUp {
     from {
         opacity: 0;
-        transform: translateY(40px) scale(0.9);
+        transform: translateY(30px) scale(0.95);
     }
 
     to {
@@ -468,7 +385,7 @@
 
 .modal-header {
     padding: 1.75rem;
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid #e5e7eb;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -491,10 +408,10 @@
 .camera-preview,
 .foto-preview {
     width: 100%;
-    border-radius: 16px;
+    border-radius: 14px;
     margin-bottom: 1.5rem;
-    border: 2px solid var(--glass-border);
-    box-shadow: var(--shadow-glass);
+    border: 2px solid #e5e7eb;
+    box-shadow: var(--shadow-sm);
 }
 
 .status-geo {
@@ -502,22 +419,21 @@
     align-items: center;
     gap: 0.75rem;
     padding: 1.25rem;
-    background: rgba(102, 126, 234, 0.05);
-    border: 1px solid rgba(102, 126, 234, 0.2);
-    border-radius: 14px;
+    background: rgba(103, 126, 234, 0.05);
+    border: 1px solid rgba(103, 126, 234, 0.2);
+    border-radius: 12px;
     font-size: 0.95rem;
     color: var(--text-secondary);
-    backdrop-filter: blur(10px);
 }
 
 .status-geo .icone {
     font-size: 1.5rem;
-    color: var(--neon-purple);
+    color: #667eea;
 }
 
 .modal-footer {
     padding: 1.75rem;
-    border-top: 1px solid var(--glass-border);
+    border-top: 1px solid #e5e7eb;
     display: flex;
     gap: 1rem;
 }
@@ -546,32 +462,5 @@
     .menu-lateral {
         width: 100%;
         max-width: 360px;
-    }
-
-    .registro-icone {
-        width: 48px;
-        height: 48px;
-        font-size: 1.5rem;
-    }
-
-    .registro-foto {
-        width: 48px;
-        height: 48px;
-    }
-}
-
-/* ============================================================================
-   ANIMAÇÕES PERSONALIZADAS
-   ============================================================================ */
-
-@keyframes pulseGlow {
-
-    0%,
-    100% {
-        box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
-    }
-
-    50% {
-        box-shadow: 0 0 40px rgba(102, 126, 234, 0.6);
     }
 }
