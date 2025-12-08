@@ -23,9 +23,12 @@ class GerenciadorPonto {
      */
     configurarBotoes() {
         const botoesPonto = document.querySelectorAll('.btn-ponto');
+        console.log('🔧 Configurando botões de ponto. Encontrados:', botoesPonto.length);
 
         botoesPonto.forEach(btn => {
+            console.log('📌 Anexando listener ao botão:', btn.id, 'tipo:', btn.dataset.tipo);
             btn.addEventListener('click', async () => {
+                console.log('🖱️ Botão clicado!', btn.id);
                 if (btn.disabled) return;
 
                 this.tipoAtual = btn.dataset.tipo;
