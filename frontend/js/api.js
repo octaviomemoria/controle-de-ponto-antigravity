@@ -47,7 +47,18 @@ class ApiClient {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.detail || 'Erro na requisição');
+                // Extrair mensagem de erro do backend
+                let errorMessage = 'Erro na requisição';
+
+                if (data.detail) {
+                    errorMessage = typeof data.detail === 'string'
+                        ? data.detail
+                        : JSON.stringify(data.detail);
+                } else if (data.message) {
+                    errorMessage = data.message;
+                }
+
+                throw new Error(errorMessage);
             }
 
             return data;
@@ -63,7 +74,7 @@ class ApiClient {
     async login(email, senha) {
         const data = await this.request('/auth/login', {
             method: 'POST',
-            body: JSON.stringify({ email, password: senha }),
+            body: JSON.stringify({ email, senha }),
             skipAuth: true
         });
 
