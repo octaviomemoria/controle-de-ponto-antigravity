@@ -64,14 +64,34 @@ async def obter_ultimo_registro(
         ultimo = await ServicoPonto.obter_ultimo_ponto(supabase, usuario.id)
         
         if ultimo:
+            # Determinar quais ações são permitidas baseado no último tipo
+            can_clock_in = ultimo.tipo_ponto in [TipoPonto.CLOCK_OUT, TipoPonto.BREAK_END]
+            can_clock_out = ultimo.tipo_ponto in [TipoPonto.CLOCK_IN, TipoPonto.BREAK_END]
+            can_break_start = ultimo.tipo_ponto == TipoPonto.CLOCK_IN
+            can_break_end = ultimo.tipo_ponto == TipoPonto.BREAK_START
+            
             return RespostaUltimoPonto(
                 tipo_ponto=ultimo.tipo_ponto,
-                timestamp=ultimo.timestamp
+                timestamp=ultimo.timestamp,
+                last_record={
+                    "clock_type": ultimo.tipo_ponto.value,
+                    "timestamp": ultimo.timestamp.isoformat()
+                },
+                can_clock_in=can_clock_in,
+                can_clock_out=can_clock_out,
+                can_break_start=can_break_start,
+                can_break_end=can_break_end
             )
         else:
+            # Sem registros = pode fazer entrada
             return RespostaUltimoPonto(
                 tipo_ponto=None,
-                timestamp=None
+                timestamp=None,
+                last_record=None,
+                can_clock_in=True,
+                can_clock_out=False,
+                can_break_start=False,
+                can_break_end=False
             )
         
     except Exception as e:

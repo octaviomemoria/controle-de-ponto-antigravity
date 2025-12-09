@@ -81,6 +81,11 @@ class RespostaUltimoPonto(BaseModel):
     """Último registro de ponto para validação"""
     tipo_ponto: Optional[TipoPonto] = None
     timestamp: Optional[datetime] = None
+    last_record: Optional[dict] = None
+    can_clock_in: bool = True
+    can_clock_out: bool = False
+    can_break_start: bool = False
+    can_break_end: bool = False
 
 
 # ========== Schemas de Empresa ==========
