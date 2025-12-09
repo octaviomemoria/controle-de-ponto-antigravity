@@ -80,7 +80,7 @@ class ApiClient {
 
         // Salvar token e usuário
         localStorage.setItem(CONFIG.STORAGE_KEYS.TOKEN, data.access_token);
-        localStorage.setItem(CONFIG.STORAGE_KEYS.USUARIO, JSON.stringify(data.user));
+        localStorage.setItem(CONFIG.STORAGE_KEYS.USUARIO, JSON.stringify(data.usuario));
 
         return data;
     }
@@ -99,7 +99,20 @@ class ApiClient {
      */
     getUsuarioAtual() {
         const usuario = localStorage.getItem(CONFIG.STORAGE_KEYS.USUARIO);
-        return usuario ? JSON.parse(usuario) : null;
+
+        // Validar se o valor é válido antes de fazer parse
+        if (!usuario || usuario === 'undefined' || usuario === 'null') {
+            return null;
+        }
+
+        try {
+            return JSON.parse(usuario);
+        } catch (error) {
+            console.error('Erro ao fazer parse do usuário do localStorage:', error);
+            // Limpar localStorage corrompido
+            localStorage.removeItem(CONFIG.STORAGE_KEYS.USUARIO);
+            return null;
+        }
     }
 
     /**
