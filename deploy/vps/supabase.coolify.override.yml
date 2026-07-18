@@ -1,0 +1,23 @@
+services:
+  kong:
+    networks:
+      - default
+      - coolify
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=coolify"
+      - "traefik.http.routers.controle-supabase-http.rule=Host(`${SUPABASE_DOMAIN}`)"
+      - "traefik.http.routers.controle-supabase-http.entrypoints=http"
+      - "traefik.http.routers.controle-supabase-http.middlewares=controle-supabase-redirect"
+      - "traefik.http.middlewares.controle-supabase-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.controle-supabase-redirect.redirectscheme.permanent=true"
+      - "traefik.http.routers.controle-supabase.rule=Host(`${SUPABASE_DOMAIN}`)"
+      - "traefik.http.routers.controle-supabase.entrypoints=https"
+      - "traefik.http.routers.controle-supabase.tls=true"
+      - "traefik.http.routers.controle-supabase.tls.certresolver=letsencrypt"
+      - "traefik.http.services.controle-supabase.loadbalancer.server.port=8000"
+
+networks:
+  coolify:
+    external: true
+

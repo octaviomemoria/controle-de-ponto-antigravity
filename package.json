@@ -1,0 +1,22 @@
+{
+  "name": "controle-de-ponto-om-way",
+  "private": true,
+  "version": "0.2.0",
+  "description": "Monorepo: Portal do Colaborador",
+  "workspaces": ["apps/*"],
+  "overrides": {
+    "uuid": "^11.1.1"
+  },
+  "scripts": {
+    "dev": "npm run build:web && npm run dev:api",
+    "start": "node apps/api/src/index.js",
+    "dev:api": "node apps/api/src/index.js",
+    "build:web": "npm run build -w apps/web",
+    "typecheck:web": "npm run typecheck -w apps/web",
+    "smoke:api": "node scripts/smoke-api.js",
+    "desktop": "npm run build:web && npm run start -w @controle/desktop",
+    "build:desktop": "npm run dist -w @controle/desktop",
+    "verify": "node scripts/verify.js"
+  },
+  "devDependencies": {}
+}

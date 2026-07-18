@@ -1,0 +1,5 @@
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+15 3 * * * root SUPABASE_DIR=/opt/controle-ponto/supabase-project BACKUP_DIR=/opt/backups/controle-ponto /bin/sh /opt/controle-ponto/app/deploy/vps/backup.sh >> /var/log/controle-ponto-backup.log 2>&1
+*/5 * * * * root /usr/bin/curl -fsS --max-time 20 https://ponto.2-24-127-201.sslip.io/api/ready >/dev/null || /usr/bin/logger -t controle-ponto "health-check-failed"

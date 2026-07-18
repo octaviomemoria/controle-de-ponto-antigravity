@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      PORT: 3002
+    ports:
+      - "127.0.0.1:3002:3002"
+    networks:
+      - default
+      - coolify
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=coolify"
+      - "traefik.http.routers.controle-ponto-http.rule=Host(`${APP_DOMAIN}`)"
+      - "traefik.http.routers.controle-ponto-http.entrypoints=http"
+      - "traefik.http.routers.controle-ponto-http.middlewares=controle-ponto-redirect"
+      - "traefik.http.middlewares.controle-ponto-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.controle-ponto-redirect.redirectscheme.permanent=true"
+      - "traefik.http.routers.controle-ponto.rule=Host(`${APP_DOMAIN}`)"
+      - "traefik.http.routers.controle-ponto.entrypoints=https"
+      - "traefik.http.routers.controle-ponto.tls=true"
+      - "traefik.http.routers.controle-ponto.tls.certresolver=letsencrypt"
+      - "traefik.http.services.controle-ponto.loadbalancer.server.port=3002"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3002/api/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+networks:
+  coolify:
+    external: true
+

@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Local caches
+.npm-cache/
+
+# Local development artifacts
+.dev/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS / editor noise
+.DS_Store
+desktop.ini
+Thumbs.db
+.agent/
+.agents/
+.codex/
+.playwright-cli/
+.vscode/
+
+# Local references and generated installers
+Referencias_pages/
+app/
+apps/desktop/release/
+*.tgz
+
+# One-off local diagnostics
+teste_gemini.py
+.publish-staging-*/
