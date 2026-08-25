@@ -42,3 +42,4 @@ apps/desktop/release/
 # One-off local diagnostics
 teste_gemini.py
 .publish-staging-*/
+.vercel

@@ -12,13 +12,17 @@ jobs:
   health:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    environment: production
+    env:
+      PRODUCTION_URL: https://controle-de-ponto-antigravity.vercel.app
     steps:
-      - name: Check readiness
-        env:
-          PRODUCTION_URL: ${{ secrets.PRODUCTION_URL }}
+      - name: Check health
         run: |
-          test -n "$PRODUCTION_URL"
           curl --fail --silent --show-error \
             --retry 3 --retry-delay 5 \
-            "${PRODUCTION_URL%/}/api/ready"
+            "${PRODUCTION_URL}/api/health"
+
+      - name: Check readiness
+        run: |
+          curl --fail --silent --show-error \
+            --retry 3 --retry-delay 5 \
+            "${PRODUCTION_URL}/api/ready"
